@@ -1,0 +1,28 @@
+import random #bring in a libary to help with random numbers
+
+pygame.init()#set up pygame
+screen = pygame.display.set_mode((800, 800)) #Makes up the game screen size
+pygame.display.set_caption('OMG DONUTS') #Game title
+
+img = pygame.image.load("donut.png").convert() #load in image, convert to same pixel format as screen
+img2 = pygame.image.load("Homer.png").convert()
+img.set_colorkey((255, 0, 255))#makes a bright pink transparent
+#img2.set_colorkey((255, 255, 255)) #it makes homer look like a exe version. no thank you
+
+while True: #GAME LOOP-------------------------------------------------------------------------
+    
+    #These three lines let you close the window with the x button at the top right
+    for i in pygame.event.get():
+        if i.type == pygame.QUIT:
+            status = False
+            
+    screen.blit(img, (200, 200)) #draws a donut at (200, 200)
+    screen.blit(img2,(200, 200))
+    screen.blit(img, (random.randrange(-100, 500), 200))#draws a donut at a random x postion
+    screen.blit(img2, (200,random.randrange(0, 400))) #draws a donut at a random y postion
+    pygame.time.wait(500) #slows down the game loop
+    pygame.display.flip() #This draws everyting to the screen (should always be at the end of the render section)
+    
+    
+#END OF GAME LOOP--------------------------------------------------------------------------------    
+pygame.quit()
